@@ -6,7 +6,7 @@ import (
 )
 
 type ScriptFilter struct {
-	Items []ScriptFilterItem `json:"items"`
+	Items []*ScriptFilterItem `json:"items"`
 }
 
 type ScriptFilterItem struct {
@@ -29,7 +29,7 @@ func (sf *ScriptFilter) Add(title, subtitle string) *ScriptFilterItem {
 		Title:    title,
 		Subtitle: subtitle,
 	}
-	sf.Items = append(sf.Items, item)
+	sf.Items = append(sf.Items, &item)
 	return &item
 }
 
