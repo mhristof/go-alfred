@@ -16,7 +16,13 @@ type ScriptFilterItem struct {
 	Subtitle string `json:"subtitle,omitempty"`
 }
 
-func (sf *ScriptFilter) Add(title, subtitle string) {
+// Arg Set the argument for the item.
+func (i *ScriptFilterItem) Arg(arg string) {
+	i.Arg = arg
+}
+
+// Add Adds an item to the list. It returns the item in case it requires modifications.
+func (sf *ScriptFilter) Add(title, subtitle string) *ScriptFilterItem {
 	var item = ScriptFilterItem{
 		UID:      title,
 		Arg:      title,
@@ -24,8 +30,10 @@ func (sf *ScriptFilter) Add(title, subtitle string) {
 		Subtitle: subtitle,
 	}
 	sf.Items = append(sf.Items, item)
+	return &item
 }
 
+// Print Prints the items in JSON format
 func (sf *ScriptFilter) Print() {
 	sfJSON, err := json.MarshalIndent(sf, "", "    ")
 	if err != nil {
