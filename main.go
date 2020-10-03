@@ -17,7 +17,7 @@ type ScriptFilterItem struct {
 }
 
 // Arg Set the argument for the item.
-func (i *ScriptFilterItem) Arg(arg string) {
+func (i *ScriptFilterItem) SetArg(arg string) {
 	i.Arg = arg
 }
 
