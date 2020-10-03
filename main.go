@@ -14,11 +14,17 @@ type ScriptFilterItem struct {
 	Arg      string `json:"arg,omitempty"`
 	Title    string `json:"title,omitempty"`
 	Subtitle string `json:"subtitle,omitempty"`
+	Match    string `json:"match,omitempty"`
 }
 
 // Arg Set the argument for the item.
 func (i *ScriptFilterItem) SetArg(arg string) {
 	i.Arg = arg
+}
+
+// Arg Set the argument for the item.
+func (i *ScriptFilterItem) SetMatch(match string) {
+	i.Match = match
 }
 
 // Add Adds an item to the list. It returns the item in case it requires modifications.
