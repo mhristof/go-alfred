@@ -10,11 +10,12 @@ type ScriptFilter struct {
 }
 
 type ScriptFilterItem struct {
-	UID      string `json:"uid,omitempty"`
-	Arg      string `json:"arg,omitempty"`
-	Title    string `json:"title,omitempty"`
-	Subtitle string `json:"subtitle,omitempty"`
-	Match    string `json:"match,omitempty"`
+	UID      string            `json:"uid,omitempty"`
+	Arg      string            `json:"arg,omitempty"`
+	Title    string            `json:"title,omitempty"`
+	Subtitle string            `json:"subtitle,omitempty"`
+	Match    string            `json:"match,omitempty"`
+	Icon     map[string]string `json:"icon,omitempty"`
 }
 
 // Arg Set the argument for the item.
@@ -25,6 +26,14 @@ func (i *ScriptFilterItem) SetArg(arg string) {
 // Arg Set the argument for the item.
 func (i *ScriptFilterItem) SetMatch(match string) {
 	i.Match = match
+}
+
+// SetIcon Set the argument for the item.
+func (i *ScriptFilterItem) SetIcon(path string) {
+	if i.Icon == nil {
+		i.Icon = map[string]string{}
+	}
+	i.Icon["path"] = path
 }
 
 // Add Adds an item to the list. It returns the item in case it requires modifications.

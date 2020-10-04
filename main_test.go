@@ -10,10 +10,15 @@ func TestSetArg(t *testing.T) {
 	var cases = []struct {
 		name string
 		arg  string
+		icon string
 	}{
 		{
 			name: "simple arg",
 			arg:  "foobar",
+		},
+		{
+			name: "simple arg",
+			icon: "/dev/null",
 		},
 	}
 
@@ -21,9 +26,17 @@ func TestSetArg(t *testing.T) {
 		var alf ScriptFilter
 		item := alf.Add("title", "title")
 
-		item.SetArg(test.arg)
+		if test.arg != "" {
+			item.SetArg(test.arg)
 
-		assert.Equal(t, test.arg, alf.Items[0].Arg, test.name)
+			assert.Equal(t, test.arg, alf.Items[0].Arg, test.name)
+		}
+
+		if test.icon != "" {
+			item.SetIcon(test.icon)
+
+			assert.Equal(t, test.icon, alf.Items[0].Icon["path"], test.name)
+		}
 
 	}
 }
